@@ -1,55 +1,88 @@
 using System;
 
-namespace Aufgabe1.1
-
-public void main(args) 
+namespace Aufgabe_1
 {
-    char type = char.Parse(args[0]);
-    double diameter = double.Parse(args[1]);
-
-    switch (type)
+    class Program
     {
-        case 'w':
-            Console.WriteLine("Würfel: A=" + surfaceCube(diameter) + " | V=" + volumeCube(diameter));
-            break;
-        case 'k':
-            Console.WriteLine("Sphere: A=" + surfaceSphere(diameter) + " | V=" + volumeSphere(diameter));
-            break;
-        case 'o':
-            Console.WriteLine("Oktaeder: A=" + surfaceOctahedron(diameter) + " | V=" + volumeOctahedron(diameter));
-            break;
-        default:
-            Console.WriteLine("Objekttyp nicht valide");
-            break;
+        static double A;
+        static double V;
+
+        public static double getCubeSurface(double durchmesser)
+        {
+            return 6 * Math.Pow(durchmesser, 2);
+        }
+
+        public static double getCubeVolume(double durchmesser)
+        {
+            return Math.Pow(durchmesser, 3);
+        }
+
+        public static String getCubeInfo(double durchmesser)
+        {
+            A = getCubeSurface(durchmesser);
+            V = getCubeVolume(durchmesser);
+            A = Math.Round(A, 2);
+            V = Math.Round(V, 2);
+            return "Würfel: " + " A = " + A + " | " + " V = " + V;
+        }
+        public static double getBulletSurface(double durchmesser)
+        {
+            return Math.PI * Math.Pow(durchmesser, 2);
+        }
+
+        public static double getBulletVolume(double durchmesser)
+        {
+            return (Math.PI * Math.Pow(durchmesser, 3)) / 6;
+        }
+
+        public static String getBulletInfo(double durchmesser)
+        {
+            A = getBulletSurface(durchmesser);
+            V = getBulletVolume(durchmesser);
+            A = Math.Round(A, 2);
+            V = Math.Round(V, 2);
+            return "Kugel: " + " A = " + A + " | " + " V = " + V;
+        }
+
+        public static double getOctahedronSurface(double durchmesser)
+        {
+            return 2 * Math.Sqrt(3) * Math.Pow(durchmesser, 2);
+        }
+
+        public static double getOctahedronVolume(double durchmesser)
+        {
+            return (Math.Sqrt(2) * Math.Pow(durchmesser, 3)) / 3;
+        }
+
+        public static String getOctahedronInfo(double durchmesser)
+        {
+            A = getOctahedronSurface(durchmesser);
+            V = getOctahedronVolume(durchmesser);
+
+            A = Math.Round(A, 2);
+            V = Math.Round(V, 2);
+            return "Oktaeder: " + " A = " + A + " | " + " V = " + V;
+        }
+        static void Main(string[] args)
+        {
+
+            switch (char.Parse(args[0]))
+            {
+                case 'w':
+                    Console.WriteLine(getCubeInfo(Double.Parse(args[1])));
+
+                    break;
+                case 'k':
+                    Console.WriteLine(getBulletInfo(Double.Parse(args[1])));
+                    break;
+                case 'o':
+                    Console.WriteLine(getOctahedronInfo(Double.Parse(args[1])));
+                    break;
+
+                default:
+                    Console.WriteLine("Die Eingabe " + args[0] + " " + args[1] + "wurde nicht erkannt!");
+                    break;
+            }
+        }
     }
-}
-
-private double surfaceCube(double d)
-{
-    return 6*d^2;
-}
-
-private double volumeCube(double d)
-{
-    return d^3;
-}
-
-private double surfaceSphere(double d)
-{
-    return π * d^2;
-}
-
-private double volumeSphere(double d)
-{
-    return math.PI * d^3 / 6;
-}
-
-private double surfaceOctahedron(double d)
-{
-    return 2 * math.Sqrt(3) * d^2;
-}
-
-private double volumeOctahedron(double d)
-{
-    return math.Sqrt(2) * d^3 / 3;
 }
