@@ -1,0 +1,71 @@
+using System;
+
+namespace Aufgabe1_2
+{
+    class Program
+    {
+        static string[] subj = { "Harry", "Hermine", "Ron", "Hagrid", "Snape", "Dumbledore" };
+        static string[] verbs = { "braut", "liebt", "studiert", "hasst", "zaubert", "zerstört" };
+        static string[] obj = { "Zaubertränke", "den Grimm", "Lupin", "Hogwards", "die Karte des Rumtreibers", "Dementoren" };
+
+        static void Main(string[] args)
+        {
+
+            String[] vers0 = getVerse();
+            String[] vers1 = getVerse();
+            String[] vers2 = getVerse();
+            String[] vers3 = getVerse();
+            String[] vers4 = getVerse();
+
+            for (int i = 0; i < vers0.Length; i++)
+            {
+                Console.Write(vers0[i] + " ");
+
+            }
+            Console.WriteLine("");
+
+            for (int i = 0; i < vers1.Length; i++)
+            {
+                Console.Write(vers1[i] + " ");
+
+            }
+            Console.WriteLine("");
+
+            for (int i = 0; i < vers2.Length; i++)
+            {
+                Console.Write(vers2[i] + " ");
+
+            }
+            Console.WriteLine("");
+
+            for (int i = 0; i < vers3.Length; i++)
+            {
+                Console.Write(vers3[i] + " ");
+
+            }
+
+            Console.WriteLine("");
+
+            for (int i = 0; i < vers4.Length; i++)
+            {
+                Console.Write(vers4[i] + " ");
+
+            }
+            Console.WriteLine("");
+
+        }
+
+        public static int getRandomInt(String[] wort)
+        {
+            Random rnd = new Random();
+            int output = rnd.Next(0, wort.Length);
+            return output;
+        }
+
+        public static String[] getVerse()
+        {
+            String[] output = { subj[getRandomInt(subj)], verbs[getRandomInt(verbs)], obj[getRandomInt(obj)] };
+            return output;
+        }
+    }
+}
